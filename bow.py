@@ -14,7 +14,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 # stop_words = set(stopwords.words('english'))
 
 # Load IMDb dataset (Ensure you have a CSV file with 'review' and 'sentiment' columns)
-df = pd.read_csv("IMDB_Dataset.csv")  # Adjust the file path as needed
+df = pd.read_csv("C:/Users/Mario Rus/Desktop/Proiect Cercetare/IMDB-Dataset.csv")  # Adjust the file path as needed
 
 # Convert sentiment labels to numeric (positive = 1, negative = 0)
 df['sentiment'] = df['sentiment'].map({'positive': 1, 'negative': 0})
@@ -25,7 +25,7 @@ def preprocess_text(text):
     text = re.sub(r'<.*?>', '', text)  # Remove HTML tags
     text = re.sub(r'[^a-zA-Z\s]', '', text)  # Remove punctuation and numbers
     words = text.split()
-    words = [word for word in words if word not in stop_words]  # Remove stopwords
+    # words = [word for word in words if word not in stop_words]  # Remove stopwords
     return ' '.join(words)
 
 # Apply preprocessing

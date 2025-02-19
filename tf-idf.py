@@ -34,3 +34,21 @@ df['cleaned_review'] = df['review'].apply(preprocess_text)
 # Split dataset into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(df['cleaned_review'], df['sentiment'], test_size=0.2, random_state=42)
 
+
+# Convert text data into TF-IDF feature vectors
+vectorizer_tfidf = TfidfVectorizer()
+X_train_tfidf = vectorizer_tfidf.fit_transform(X_train)
+X_test_tfidf = vectorizer_tfidf.transform(X_test)
+
+# Train Naïve Bayes on TF-IDF
+nb_tfidf = MultinomialNB()
+nb_tfidf.fit(X_train_tfidf, y_train)
+
+# Predict on test data
+y_pred_tfidf = nb_tfidf.predict(X_test_tfidf)
+
+# Evaluate performance
+print("=== Naïve Bayes with TF-IDF ===")
+print("Accuracy:", accuracy_score(y_test, y_pred_tfidf))
+print("Classification Report:\n", classification_report(y_test, y_pred_tfidf))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred_tfidf))
