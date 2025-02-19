@@ -8,12 +8,7 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
-
-# # Download stopwords if not already available
-# nltk.download('stopwords')
-# stop_words = set(stopwords.words('english'))
-
-# Load IMDb dataset (Ensure you have a CSV file with 'review' and 'sentiment' columns)
+# Load IMDb dataset 
 df = pd.read_csv("C:/Users/Mario Rus/Desktop/Proiect Cercetare/IMDB-Dataset.csv")  
 
 # Convert sentiment labels to numeric (positive = 1, negative = 0)
@@ -25,7 +20,6 @@ def preprocess_text(text):
     text = re.sub(r'<.*?>', '', text)  # Remove HTML tags
     text = re.sub(r'[^a-zA-Z\s]', '', text)  # Remove punctuation and numbers
     words = text.split()
-    # words = [word for word in words if word not in stop_words]  # Remove stopwords
     return ' '.join(words)
 
 # Apply preprocessing
